@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
+
 
 namespace EFCoreRelationships.Controllers
 {
@@ -11,6 +12,13 @@ namespace EFCoreRelationships.Controllers
         public CharacterController(DataContext context)
         {
             _context = context;
+        }
+
+        [HttpGet("GettAllUsers")]
+        public async Task<ActionResult<List<User>>> Get()
+        {
+           
+            return Ok (await _context.Users.Include(u => u.Characters.Select(c => c.Weapon)).ToListAsync());
         }
 
         [HttpGet]

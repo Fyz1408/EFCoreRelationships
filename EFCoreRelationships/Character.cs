@@ -11,9 +11,9 @@ namespace EFCoreRelationships
         public User User { get; set; }
 
         public int UserId { get; set; }
-
+        [JsonIgnore]
         public Weapon Weapon { get; set; }
-
+        [JsonIgnore]
         public List<Skill> Skills { get; set; }
     }
 }
